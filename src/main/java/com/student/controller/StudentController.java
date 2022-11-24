@@ -20,22 +20,22 @@ public class StudentController {
         return s;
 
     }
-    @PostMapping("/st")
-    public String addStudents(@RequestBody ArrayList<Student> student)
-    {
-        return studentService.addStudents(student);
-
-    }
     @GetMapping("/home")
     public ArrayList<Student> getAllStudents()
     {
+
         return studentService.getStudent();
     }
-   /* @PutMapping("/update/student/{studentName}")
-    public Student updateStudent(@PathVariable String studentName,@RequestBody int grade)
-    {
-        return studentService.updateStudent(studentName,grade);
-    }*/
 
+    @DeleteMapping("/get/{rollNo}")
+    public String deleteProduct(@PathVariable int rollNo) {
+         studentService.deleteStudent(rollNo);
+         return "Student Data Deleted";
+    }
+
+    @GetMapping("/get1/{rollNo}")
+    public Student findStudentById(@PathVariable int rollNo) {
+        return studentService.getStudentById(rollNo);
+    }
 }
 
