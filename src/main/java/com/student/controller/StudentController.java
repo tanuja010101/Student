@@ -6,46 +6,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.student.service.StudentService;
 
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping(path = "/s")
-    public Student addStudent(@RequestBody Student student)
+    @PostMapping(path = "/student/post")
+    public String addStudent(@RequestBody Student student)
     {
-        return studentService.addStudent(student);
+        String s = studentService.addStudent(student);
+        return s;
 
     }
     @PostMapping("/st")
-    public List<Student> addStudents(@RequestBody List<Student> student)
+    public String addStudents(@RequestBody ArrayList<Student> student)
     {
         return studentService.addStudents(student);
 
     }
-    @GetMapping("/find")
-    public List<Student> getAllStudents()
+    @GetMapping("/home")
+    public ArrayList<Student> getAllStudents()
     {
         return studentService.getStudent();
     }
-    @GetMapping("/find/{rollNo}")
-    public Student findStudentByRollNo(@PathVariable int rollNo)
+   /* @PutMapping("/update/student/{studentName}")
+    public Student updateStudent(@PathVariable String studentName,@RequestBody int grade)
     {
-        return studentService.getStudentByRollnNo(rollNo);
-    }
-
-    /*@PutMapping("/update")
-    public Student updateStudent(@RequestBody Student student)
-    {
-        return studentService.updateStudent(student);
+        return studentService.updateStudent(studentName,grade);
     }*/
-    @DeleteMapping("/delete/{customerId}")
-    public ResponseEntity<Student> deleteFeedBack(@PathVariable int rollNo)
-    {
-        return studentService.deleteStudent(rollNo);
-    }
-
 
 }
 

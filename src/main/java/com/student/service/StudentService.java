@@ -1,49 +1,51 @@
 package com.student.service;
 
 import com.student.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.student.repository.Repository;
 
-import java.util.List;
-
+import java.util.ArrayList;
 @Service
-public class StudentService {
-    @Autowired
-    private Repository repository;
-    public Student addStudent(Student student)
-    {
-        return repository.save(student);
+public class StudentService{
 
-    }
-    public List<Student> addStudents(List<Student> student)
-    {
-        return repository.saveAll(student);
-    }
-    public List<Student> getStudent()
-    {
-        return repository.findAll();
-    }
-    public Student getStudentByRollnNo(int rollno)
-    {
-        return repository.findById(rollno).orElse(null);
+    private ArrayList<Student> student1=new ArrayList<Student>();
 
+    public ArrayList<Student> getStudent1() {
+        return student1;
     }
 
-    /*public Student updateStudent(Student student)
-    {
-        Student existingStudent=repository.findById(student.getRollNo());
-
-        existingStudent.
-        existingone.setRating(feedback.getRating());
-        return fbrepository.save(existingone);
-    }*/
-
-    public ResponseEntity<Student> deleteStudent(int rollNo)
-    {
-        repository.deleteById(rollNo);
-        return ResponseEntity.ok().build();
+    public void setStudent(ArrayList<Student> student) {
+        this.student1 = student;
     }
+    public ArrayList<Student> viewAllStudent()
+    {
+        return student1;
+    }
+    public String addStudent(Student student)
+    {
+        student1.add(student);
+        return "student details added";
+    }
+    public String addStudents(ArrayList<Student> student)
+    {
+        student1.addAll(student);
+        return "student list added";
+    }
+    public ArrayList<Student> getStudent()
+    {
+        return student1;
+    }
+  /* public Student updateStudent(String name,int grade)
+   {
+       for(Student s:student1)
+       {
+           if(s.getStudentName()==name)
+           {
+               s.setGrade(grade);
+           }
+           return s;
+       }
+       return null;
+
+
+   }*/
 }
-
