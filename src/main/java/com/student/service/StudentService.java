@@ -36,7 +36,6 @@ public class StudentService{
 
 
     public String deleteStudent(int rollNo) {
-       //student1.removeIf(x -> x.getRollNo() == (rollNo));
         for(int i=0;i<student1.size();i++){
             if(student1.get(i).getRollNo()==rollNo){
                 student1.remove(i);
