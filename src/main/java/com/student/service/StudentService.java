@@ -72,7 +72,7 @@ public class StudentService{
         student2.setStudentName(student.getStudentName());
         student2.setGrade(student.getGrade());
         student2.setAddress(student.getAddress());
-        student2.setDateOfBirth(student.getDateOfBirth());
+        student2.setMarks(student.getMarks());
         student1.set(idx,student2);
         return student2;
     }
