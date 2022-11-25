@@ -44,6 +44,17 @@ public class StudentService{
         {
             return "invalid address";
         }
+
+        if(!validation.checkStudentName(student.getStudentName()))
+        {
+            return "invalid Student Name";
+        }
+
+        if(!validation.checkmarks(student.getMarks()))
+        {
+            return "marks range is only 0 to 100";
+        }
+
         student1.add(student);
         return "student details added";
     }

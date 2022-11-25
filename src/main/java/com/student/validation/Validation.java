@@ -30,6 +30,25 @@ public class Validation{
         }
         return false;
     }
+
+    public boolean checkStudentName(String studentName){
+        if((!(studentName.equals(null)))&&(studentName.matches("^[A-Za-z\\s,]*$")))
+        {
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean checkmarks(double marks)
+    {
+        if(!(marks<100 && marks>0))
+        {
+            return false;
+        }
+        return true;
+
+    }
 }
 
 

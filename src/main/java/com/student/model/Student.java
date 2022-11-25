@@ -10,14 +10,6 @@ public class Student {
     private int studentClass;
 
 
-    public double getMarks() {
-        return marks;
-    }
-
-    public void setMarks(double marks) {
-        this.marks = marks;
-    }
-
     public int getRollNo() {
 
         return rollNo;
@@ -60,5 +52,13 @@ public class Student {
 
     public void setStudentClass(int studentClass) {
         this.studentClass = studentClass;
+    }
+    public double getMarks() {
+        return marks;
+    }
+
+    public void setMarks(double marks) {
+
+        this.marks = marks;
     }
 }
