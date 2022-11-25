@@ -1,11 +1,13 @@
 package com.student.model;
 
 public class Student {
-    int rollNo;
-    String studentName;
-    String grade;
-    String address;
-    double marks;
+   private int rollNo;
+    private String studentName;
+    private String grade;
+    private String address;
+    private double marks;
+
+    private int studentClass;
 
 
     public double getMarks() {
@@ -52,7 +54,11 @@ public class Student {
         this.address = address;
     }
 
+    public int getStudentClass() {
+        return studentClass;
+    }
 
-
-
+    public void setStudentClass(int studentClass) {
+        this.studentClass = studentClass;
+    }
 }

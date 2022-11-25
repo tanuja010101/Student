@@ -1,13 +1,19 @@
 package com.student.service;
 
 import com.student.model.Student;
+import com.student.validation.Validation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 @Service
 public class StudentService{
+    @Autowired
+    private Validation validation;
 
     private ArrayList<Student> student1=new ArrayList<Student>();
+
+
 
     public ArrayList<Student> getStudent1() {
 
@@ -25,6 +31,19 @@ public class StudentService{
     }
     public String addStudent(Student student)
     {
+        boolean b=validation.checkRollNo(student.getRollNo());
+        if(b==false)
+        {
+            return "invalid rollNo,roll no. can only be between 1 to 100";
+        }
+        if(!validation.checkGrade(student.getGrade()))
+        {
+            return "grades range is only A to F";
+        }
+        if(!validation.checkAddress(student.getAddress()))
+        {
+            return "invalid address";
+        }
         student1.add(student);
         return "student details added";
     }
@@ -73,6 +92,7 @@ public class StudentService{
         student2.setGrade(student.getGrade());
         student2.setAddress(student.getAddress());
         student2.setMarks(student.getMarks());
+        student2.setStudentClass(student.getStudentClass());
         student1.set(idx,student2);
         return student2;
     }
