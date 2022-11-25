@@ -32,7 +32,7 @@ public class Validation{
     }
 
     public boolean checkStudentName(String studentName){
-        if((!(studentName.equals(null)))&&(studentName.matches("^[A-Za-z\\s,]*$")))
+        if((!(studentName.equals(null)))&&(studentName.matches("^[A-Za-z\\s]*$")))
         {
             return true;
         }
@@ -42,12 +42,18 @@ public class Validation{
 
     public boolean checkmarks(double marks)
     {
-        if(!(marks<100 && marks>0))
+        if(!(marks<=100 && marks>=0))
         {
             return false;
         }
         return true;
 
+    }
+    public boolean checkstudentClass(int Class){
+        if(!(Class<=12 && Class>=1)){
+            return false;
+        }
+        return true;
     }
 }
 

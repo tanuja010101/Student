@@ -55,6 +55,11 @@ public class StudentService{
             return "marks range is only 0 to 100";
         }
 
+        if(!validation.checkstudentClass(student.getStudentClass()))
+        {
+            return "Student Class range is only 1 to 12";
+        }
+
         student1.add(student);
         return "student details added";
     }
