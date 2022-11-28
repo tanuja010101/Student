@@ -1,6 +1,7 @@
 package com.student.controller;
 
 import com.student.model.Student;
+import exceptions.EnterValidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,7 @@ public class StudentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/student/post")
-    public String addStudent(@RequestBody Student student)
-    {
+    public String addStudent(@RequestBody Student student) throws Exception {
         String s = studentService.addStudent(student);
         return s;
 
@@ -40,7 +40,6 @@ public class StudentController {
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/student/get/{rollNo}")
     public Student findStudentById(@PathVariable int rollNo) {
-
         return studentService.getStudentById(rollNo);
     }
 
