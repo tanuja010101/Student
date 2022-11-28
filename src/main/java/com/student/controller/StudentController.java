@@ -4,6 +4,8 @@ import com.student.exceptions.StudentAlreadyExistsException;
 import com.student.exceptions.DataNotFoundException;
 import com.student.exceptions.ErrorResponse;
 import com.student.model.Student;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +13,18 @@ import com.student.service.StudentService;
 
 import java.util.ArrayList;
 
+
 @RestController
 public class StudentController {
+
+    Logger logger =  LoggerFactory.getLogger(StudentService.class);
     @Autowired
     private StudentService studentService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/student/post")
     public String addStudent(@RequestBody Student student) throws Exception {
+        logger.info("method");
         String s = studentService.addStudent(student);
         return s;
 
