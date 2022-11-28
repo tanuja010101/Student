@@ -5,9 +5,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class DataNotFoundException extends Exception{
-    public DataNotFoundException(String Exception)
+    private String msg;
+    public DataNotFoundException(){
+
+    }
+    public DataNotFoundException(String message)
     {
-        super(Exception);
+        super(message);
+        this.msg=message;
     }
 
 }

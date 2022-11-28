@@ -1,5 +1,8 @@
 package com.student.controller;
 
+import com.student.exceptions.StudentAlreadyExistsException;
+import com.student.exceptions.DataNotFoundException;
+import com.student.exceptions.ErrorResponse;
 import com.student.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,23 +33,24 @@ public class StudentController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @DeleteMapping("/student/delete/{rollNo}")
-    public String deleteProduct(@PathVariable int rollNo) {
+    public String deleteProduct(@PathVariable int rollNo) throws DataNotFoundException {
          studentService.deleteStudent(rollNo);
          return "Student Data Deleted";
     }
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/student/get/{rollNo}")
-    public Student findStudentById(@PathVariable int rollNo) {
+    public Student findStudentById(@PathVariable int rollNo) throws DataNotFoundException {
         return studentService.getStudentById(rollNo);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/student/update")
-    public Student updateStudent(@RequestBody Student student)
+    public Student updateStudent(@RequestBody Student student) throws DataNotFoundException
     {
 
         return studentService.updateStudent(student);
     }
+
 }
 
