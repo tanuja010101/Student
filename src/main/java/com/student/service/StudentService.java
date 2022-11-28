@@ -1,8 +1,9 @@
 package com.student.service;
 
+import com.student.exceptions.DataNotFoundException;
 import com.student.model.Student;
 import com.student.validation.Validation;
-import exceptions.EnterValidDataException;
+import com.student.exceptions.EnterValidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,9 +54,7 @@ public class StudentService {
 
             if (!validation.checkstudentClass(student.getStudentClass())) {
                 throw new EnterValidDataException("Student Class range is only 1 to 12");
-            } /*else
-                student1.add(student);
-            return "student details added";*/
+            }
 
         } catch (EnterValidDataException e) {
             System.out.println(e.getMessage());
@@ -71,15 +70,27 @@ public class StudentService {
             return student1;
         }
 
-        public void deleteStudent ( int rollNo){
+        public String deleteStudent ( int rollNo) {
+            try {
+                if (rollNo < 0 || rollNo > 100) {
+                    throw new EnterValidDataException("enter valid roll no");
+
+                }
+
+                String roll = String.valueOf(rollNo);
+                if (roll.length()==0) {
+                    throw new DataNotFoundException("please add some value");
+                }
+            } catch (DataNotFoundException | EnterValidDataException e1) {
+                System.out.println(e1.getMessage());
+            }
             for (int i = 0; i < student1.size(); i++) {
                 if (student1.get(i).getRollNo() == rollNo) {
                     student1.remove(i);
                 }
+
             }
-
-            return;
-
+            return "deleted successfully";
         }
 
         public Student getStudentById ( int rollNo){
