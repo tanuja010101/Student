@@ -11,20 +11,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = DataNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse DataNotFoundException(DataNotFoundException e) {
+    public @ResponseBody ErrorResponse dataNotFoundException(DataNotFoundException e) {
         return new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage());
     }
 
     @ExceptionHandler(value = StudentAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public @ResponseBody ErrorResponse StudentAlredyExistException(StudentAlreadyExistsException e) {
+    public @ResponseBody ErrorResponse studentAlreadyExistException(StudentAlreadyExistsException e) {
         return new ErrorResponse(HttpStatus.CONFLICT.value(), e.getMessage());
     }
 
     @ExceptionHandler(value = EnterValidDataException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public @ResponseBody ErrorResponse EnterValidDataException(EnterValidDataException e) {
-        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ErrorResponse enterValidDataException(EnterValidDataException ex) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
-
 }
