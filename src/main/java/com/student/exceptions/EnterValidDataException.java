@@ -1,18 +1,13 @@
 package com.student.exceptions;
 
-public class EnterValidDataException extends RuntimeException {
-    private String msg;
 
-    public String getMsg() {
-        return msg;
-    }
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
+@ResponseStatus(value = HttpStatus.FOUND)
+public class EnterValidDataException extends Exception {
     public EnterValidDataException(String message) {
         super(message);
-        this.msg = message;
     }
+
 }

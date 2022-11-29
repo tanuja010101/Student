@@ -19,32 +19,35 @@ public class Validation {
         }
         return false;
     }
-
-    public boolean checkAddress(String address) {
-        if ((!(address.equals(null))) && (address.matches("^[A-Za-z0-9\\s,]*$"))) {
-            return true;
+    public boolean checkAddress(String address)
+    {
+        if((!(address.equals(null)))&&(address.matches("^[A-Za-z0-9\\s,]*$")))
+        {
+           return true;
         }
         return false;
     }
 
-    public boolean checkStudentName(String studentName) {
-        if ((!(studentName.equals(null))) && (studentName.matches("^[A-Za-z\\s]*$"))) {
+    public boolean checkStudentName(String studentName){
+        if((!(studentName.equals(null)))&&(studentName.matches("^[A-Za-z\\s]*$")))
+        {
             return true;
         }
         return false;
 
     }
 
-    public boolean checkMarks(double marks) {
-        if (!(marks <= 100 && marks >= 0)) {
+    public boolean checkmarks(double marks)
+    {
+        if(!(marks<=100 && marks>=0))
+        {
             return false;
         }
         return true;
 
     }
-
-    public boolean checkStudentClass(int Class) {
-        if (!(Class <= 12 && Class >= 1)) {
+    public boolean checkstudentClass(int Class){
+        if(!(Class<=12 && Class>=1)){
             return false;
         }
         return true;
