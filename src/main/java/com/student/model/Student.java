@@ -1,7 +1,7 @@
 package com.student.model;
 
 public class Student {
-   private int rollNo;
+    private int rollNo;
     private String studentName;
     private String grade;
     private String address;
@@ -53,6 +53,7 @@ public class Student {
     public void setStudentClass(int studentClass) {
         this.studentClass = studentClass;
     }
+
     public double getMarks() {
         return marks;
     }
