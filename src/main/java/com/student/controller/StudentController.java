@@ -33,7 +33,6 @@ public class StudentController {
     @GetMapping("/student/get")
     public ArrayList<Student> getAllStudents()
     {
-
         return studentService.getStudent();
     }
 
