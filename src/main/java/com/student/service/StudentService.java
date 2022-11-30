@@ -32,6 +32,13 @@ public class StudentService {
         return student1;
     }
 
+    /**
+     *
+     * @param student
+     * @return Added Student Data
+     * @throws StudentAlreadyExistsException
+     * @throws EnterValidDataException
+     */
     public String addStudent(Student student) throws StudentAlreadyExistsException, EnterValidDataException {
         int j = 0;
         for (int i = 0; i < student1.size(); i++) {
@@ -67,10 +74,17 @@ public class StudentService {
         return "student data added Successful";
     }
 
+
     public ArrayList<Student> getStudent() {
         return student1;
     }
 
+    /**
+     *
+     * @param rollNo
+     * @return Delete the student data record
+     * @throws DataNotFoundException
+     */
     public String deleteStudent(int rollNo) throws DataNotFoundException {
         int j = 0;
         for (int i = 0; i < student1.size(); i++) {
@@ -86,6 +100,13 @@ public class StudentService {
         return null;
     }
 
+    /**
+     *
+     * @param rollNo
+     * @return Search by rollNo
+     * @throws DataNotFoundException
+     */
+
     public Student getStudentById(int rollNo) throws DataNotFoundException {
         int j = 0;
         for (int i = 0; i < student1.size(); i++) {
@@ -100,6 +121,12 @@ public class StudentService {
         return null;
     }
 
+    /**
+     *
+     * @param student
+     * @return updated student data
+     * @throws DataNotFoundException
+     */
     public Student updateStudent(Student student) throws DataNotFoundException {
         int j = 0;
         int idx = 0;
