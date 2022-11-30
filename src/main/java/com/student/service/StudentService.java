@@ -17,6 +17,7 @@ public class StudentService {
 
     private ArrayList<Student> student1 = new ArrayList<Student>();
 
+
     public ArrayList<Student> getStudent1() {
 
         return student1;
@@ -49,6 +50,10 @@ public class StudentService {
         if (j > 0) {
             throw new StudentAlreadyExistsException("student already exist with the given roll no.=" + student.getRollNo());
         }
+        if(student.getStudentName().isEmpty() || student.getGrade().isEmpty() || student.getAddress().isEmpty())
+        {
+            throw new EnterValidDataException("you can not enter a null value");
+        }
 
         boolean b = validation.checkRollNo(student.getRollNo());
 
@@ -74,6 +79,9 @@ public class StudentService {
         return "student data added Successful";
     }
 
+    /**
+     * @return student Data
+     */
 
     public ArrayList<Student> getStudent() {
         return student1;
