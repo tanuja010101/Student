@@ -14,19 +14,23 @@ import org.junit.Ignore;
 import org.junit.jupiter.api.*;
 
 import org.junit.platform.engine.TestExecutionResult;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -34,8 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class SpringgitApplicationTests{
 
-	Student student;
 
+	Student student;
+    @Mock
 	@Autowired
 	StudentService studentService;
 
@@ -74,7 +79,7 @@ class SpringgitApplicationTests{
 		assertThrows(StudentAlreadyExistsException.class, () -> studentService.addStudent(student), "student already exist with the given roll no.");
 	}
 
-	@Order(3)
+	@Order(5)
 	@Test
 	void testInvalidAddDataForStudent(){
 		student.setRollNo(200);
@@ -104,7 +109,7 @@ class SpringgitApplicationTests{
 
 
 
-	@Order(5)
+	@Order(8)
 	@Test
 	void testControllerAddStudent() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
@@ -115,7 +120,7 @@ class SpringgitApplicationTests{
 				.andExpect(status().isCreated());
 
 	}
-
+    @Order(7)
 	@Test
 	void testControllerViewStudent() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
@@ -125,6 +130,43 @@ class SpringgitApplicationTests{
 				.andExpect(status().isOk());
 
 	}
+	@Order(4)
+	@Test
+	void testServiceDeleteStudent() throws DataNotFoundException,EnterValidDataException
+	{
+		//studentService.addStudent(student);
+		String expected="deleted successfully";
+		String actual=studentService.deleteStudent(1);
+		assertEquals(expected,actual);
+
+	}
+	@Order(3)
+	@Test
+	void testServiceUpdateStudent() throws EnterValidDataException,DataNotFoundException
+	{
+		Student student1=new Student();
+		student1.setRollNo(1);
+		student1.setStudentName("tanuja");
+		student1.setGrade("B");
+		student1.setAddress("abc krishna nagar");
+		student1.setMarks(90);
+		student1.setStudentClass(5);
+		//studentService.addStudent(student);
+		Student actual=studentService.updateStudent(student1);
+		Student expected=studentService.getStudentById(1);
+		assertEquals(actual,expected);
+		/*assertThrows(EnterValidDataException.class,()->studentService.updateStudent(student),"student roll no already exist");*/
+
+	}
+	@Order(6)
+	@Test
+	void testServiceViewStudent()throws DataNotFoundException,EnterValidDataException
+	{
+		//studentService.addStudent(student);
+		ArrayList<Student> list=studentService.getStudent();
+		assertEquals(1,list.size());
+	}
+
 
 
 
