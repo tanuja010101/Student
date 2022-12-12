@@ -9,6 +9,19 @@ public class Student {
 
     private int studentClass;
 
+    public Student(int rollNo, String studentName, String grade, String address, double marks, int studentClass) {
+        this.rollNo = rollNo;
+        this.studentName = studentName;
+        this.grade = grade;
+        this.address = address;
+        this.marks = marks;
+        this.studentClass = studentClass;
+    }
+
+    public Student() {
+
+    }
+
 
     public int getRollNo() {
 
@@ -62,4 +75,6 @@ public class Student {
 
         this.marks = marks;
     }
+
+
 }

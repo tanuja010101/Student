@@ -21,10 +21,10 @@ public class StudentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/student/add")
-    public String addStudent(@RequestBody Student student) throws Exception {
-        String s = studentService.addStudent(student);
+    public Student addStudent(@RequestBody Student student) throws Exception {
+
         logger.info("Student data Added");
-        return s;
+        return studentService.addStudent(student);
 
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface StudentService {
     ArrayList<Student> getStudent();
-    String addStudent(Student student) throws StudentAlreadyExistsException, EnterValidDataException;
+    Student addStudent(Student student) throws EnterValidDataException;
     String deleteStudent(int rollNo) throws DataNotFoundException;
 
      Student getStudentById(int rollNo) throws DataNotFoundException;

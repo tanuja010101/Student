@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.FOUND)
 public class EnterValidDataException extends Exception {
     public EnterValidDataException(String message) {
+
         super(message);
     }
 

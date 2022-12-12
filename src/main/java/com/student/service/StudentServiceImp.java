@@ -41,10 +41,9 @@ public class StudentServiceImp implements StudentService {
      * @param student
      * @return Added Student Data
      * @throws StudentAlreadyExistsException
-     * @throws EnterValidDataException
      */
     @Override
-    public String addStudent(Student student) throws StudentAlreadyExistsException, EnterValidDataException {
+    public Student addStudent(Student student) throws StudentAlreadyExistsException, EnterValidDataException {
         logger.info("add method started");
         for (int i = 0; i < student1.size(); i++) {
             if (student1.get(i).getRollNo() == student.getRollNo()) {
@@ -59,7 +58,7 @@ public class StudentServiceImp implements StudentService {
         validation.checkStudentClass(student.getStudentClass());
         student1.add(student);
         logger.info("add method ended successfully");
-        return "student data added Successful";
+        return student;
     }
 
     public ArrayList<Student> getStudent() {
