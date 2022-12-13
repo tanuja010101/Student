@@ -47,11 +47,11 @@ class SpringgitApplicationTests{
 	@Autowired
 	MockMvc mockMvc;
 
-/*
+
 
 	@Autowired
 	StudentController studentController;
-*/
+
 	@BeforeEach
 	public void setUp() {
 		student = new Student();
@@ -74,7 +74,7 @@ class SpringgitApplicationTests{
 	@Order(2)
 	@Test
 	void testStudentAlreadyPresentForAdd() throws EnterValidDataException {
-		student.setRollNo(10);
+		student.setRollNo(12);
 		studentService.addStudent(student);
 		assertThrows(StudentAlreadyExistsException.class, () -> studentService.addStudent(student), "student already exist with the given roll no.");
 	}
@@ -108,12 +108,11 @@ class SpringgitApplicationTests{
 	}
 
 
-
 	@Order(8)
 	@Test
 	void testControllerAddStudent() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		student.setRollNo(14);
+		student.setRollNo(1);
 		this.mockMvc.perform(post("/student/add")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(mapper.writeValueAsString(student)))
@@ -124,11 +123,9 @@ class SpringgitApplicationTests{
 	@Test
 	void testControllerViewStudent() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		student.setRollNo(14);
+		student.setRollNo(10);
 		this.mockMvc.perform(get("/student/view")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
-
+						.contentType(MediaType.APPLICATION_JSON));
 	}
 	@Order(4)
 	@Test
@@ -167,10 +164,30 @@ class SpringgitApplicationTests{
 		assertEquals(1,list.size());
 	}
 
+	@Order(10)
+	@Test
+	void testControllerUpdate() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		student.setStudentName("XYZ");
+		student.setRollNo(2);
+		studentService.addStudent(student);
+		this.mockMvc.perform(put("/student/update")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(mapper.writeValueAsString(student)))
+				.andExpect(status().isOk());
 
+	}
 
+	@Order(9)
+	@Test
+	void  testControllerDelete() throws Exception {
+		ObjectMapper mapper=new ObjectMapper();
+		student.setRollNo(2);
+		studentService.addStudent(student);
+		this.mockMvc.perform(delete("/student/delete/2"))
+				.andExpect(status().isAccepted());
 
-
+	}
 
 }
 

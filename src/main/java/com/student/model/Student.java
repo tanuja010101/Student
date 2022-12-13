@@ -76,5 +76,15 @@ public class Student {
         this.marks = marks;
     }
 
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "rollNo=" + rollNo +
+                ", studentName='" + studentName + '\'' +
+                ", grade='" + grade + '\'' +
+                ", address='" + address + '\'' +
+                ", marks=" + marks +
+                ", studentClass=" + studentClass +
+                '}';
+    }
 }

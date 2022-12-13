@@ -57,11 +57,12 @@ public class StudentServiceImp implements StudentService {
         validation.checkMarks(student.getMarks());
         validation.checkStudentClass(student.getStudentClass());
         student1.add(student);
-        logger.info("add method ended successfully");
+        logger.info("add method ended successfully" +student);
         return student;
     }
 
     public ArrayList<Student> getStudent() {
+        logger.info("returning list" +student1);
         return student1;
     }
 
@@ -84,7 +85,7 @@ public class StudentServiceImp implements StudentService {
         if (j == 0) {
             throw new DataNotFoundException("student not found with the roll no=" + rollNo);
         }
-        logger.info("delete method ended successfully");
+        logger.info("delete method ended successfully" +rollNo);
         return null;
     }
 
@@ -107,7 +108,7 @@ public class StudentServiceImp implements StudentService {
         if (j == 0) {
             throw new DataNotFoundException("no student present with this roll no.=" + rollNo);
         }
-        logger.info("getStudentById method ended");
+        logger.info("getStudentById method ended" +rollNo);
         return null;
     }
 
@@ -143,7 +144,7 @@ public class StudentServiceImp implements StudentService {
         student2.setMarks(student.getMarks());
         student2.setStudentClass(student.getStudentClass());
         student1.set(idx, student2);
-        logger.info("update method ended");
+        logger.info("update method ended" +student);
         return student2;
     }
 }
