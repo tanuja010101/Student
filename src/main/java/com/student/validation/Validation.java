@@ -24,7 +24,7 @@ public class Validation {
 
     public void checkGrade(String grade) throws EnterValidDataException {
         if (grade.isEmpty() || (!(grade.matches("^[A-F]$")))) {
-            logger.warn("Invalid Student Garde");
+            logger.warn("Invalid Student Grade");
             throw new EnterValidDataException("Grades can only be between A to F and can not be a null value");
         }
     }

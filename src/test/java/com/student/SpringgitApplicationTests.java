@@ -74,8 +74,8 @@ class SpringgitApplicationTests{
 	@Order(2)
 	@Test
 	void testStudentAlreadyPresentForAdd() throws EnterValidDataException {
-		student.setRollNo(12);
 		studentService.addStudent(student);
+		student.setRollNo(1);
 		assertThrows(StudentAlreadyExistsException.class, () -> studentService.addStudent(student), "student already exist with the given roll no.");
 	}
 

@@ -47,6 +47,7 @@ public class StudentServiceImp implements StudentService {
         logger.info("add method started");
         for (int i = 0; i < student1.size(); i++) {
             if (student1.get(i).getRollNo() == student.getRollNo()) {
+                logger.warn("student already present with given roll no.");
                 throw new StudentAlreadyExistsException("student already exist with the given roll no.="+student.getRollNo());
             }
         }
